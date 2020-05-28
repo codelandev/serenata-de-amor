@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+- name: 'businessInteligence'
+  orgId: 1
+  folder: 'Business Inteligence'
+  type: file
+  disableDeletion: true
+  updateIntervalSeconds: 300
+  options:
+    path: /etc/grafana/provisioning/dashboards/businessInteligence

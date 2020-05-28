@@ -32,6 +32,59 @@ services:
   rosie:
     image: serenata/rosie
 
+  prometheus:
+    image: prom/prometheus:v2.10.0
+    ports: 
+      - 9090:9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    links:
+      - node_exporter:node_exporter
+      - process_exporter:process_exporter
+      - postgres_exporter:postgres_exporter
+      - bi_exporter:bi_exporter
+
+  grafana:
+    image: grafana/grafana:6.1.3
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    links:
+      - prometheus:prometheus
+      - postgres:postgres
+
+  node_exporter:
+    image: prom/node-exporter
+
+  process_exporter:
+    image: ncabatoff/process-exporter
+    privileged: yes
+    volumes: 
+      - /proc:/host/proc
+      - ./prometheus/process-exporter:/config
+    command: --procfs /host/proc -config.path /config/config.yml
+
+  postgres_exporter:
+    image: wrouesnel/postgres_exporter
+    environment:
+      DATA_SOURCE_NAME: postgres://jarbas:mysecretpassword@postgres/jarbas?sslmode=disable
+    links:
+      - postgres:postgres
+    volumes:
+      - ./prometheus/postgres-exporter:/prometheus
+    command: --extend.query-path /prometheus/monitoring.yml
+
+  bi_exporter:
+    image: wrouesnel/postgres_exporter
+    environment:
+      DATA_SOURCE_NAME: postgres://jarbas:mysecretpassword@postgres/jarbas?sslmode=disable
+    links:
+      - postgres:postgres
+    volumes:
+      - ./prometheus/postgres-exporter:/prometheus
+    command: --disable-default-metrics --disable-settings-metrics --extend.query-path /prometheus/businessInteligence.yml
+
   tasks:
     command: ["newrelic-admin", "run-program", "celery", "worker", "--app", "jarbas"]
     depends_on:

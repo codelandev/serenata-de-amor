@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+scrape_configs:
+
+- job_name: monitoring
+  static_configs:
+  - targets:
+    - localhost:9090
+    - grafana:3000
+    - node_exporter:9100
+    - process_exporter:9256
+    - postgres_exporter:9187
+
+
+- job_name: businessInteligence
+  scrape_interval: 2h  # Use 2h interval in production
+#  scrape_interval: 5m  # For testing purposes, smaller intervals are more appropriate
+  scrape_timeout: 30m
+  static_configs:
+  - targets:
+    - bi_exporter:9187

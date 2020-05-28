@@ -1,0 +1,31 @@
+chamber_of_deputies_reimbursement:
+  query: "select distinct id, year, case when month = 1 then 'JANUARY' when month = 2 then 'FEBRUARY' when month = 3 then 'MARCH' when month = 4 then 'APRIL' when month = 5 then 'MAY' when month = 6 then 'JUNE' when month = 7 then 'JULY' when month = 8 then 'AUGUST' when month = 9 then 'SEPTEMBER' when month = 10 then 'OCTOBER' when month = 11 then 'NOVEMBER' when month = 12 then 'DECEMBER' end as month , state, party, subquota_description, supplier, congressperson_name, total_net_value from chamber_of_deputies_reimbursement"
+  metrics:
+    - id:
+        usage: "LABEL"
+        description: "Reimbursement ID"
+    - year: 
+        usage: "LABEL"
+        description: "Year that the reimbursement was made"
+    - month:
+        usage: "LABEL"
+        description: "Month that the reimbursement was made"
+    - state:
+        usage: "LABEL"
+        description: "Federal state which has elected the deputie claiming the reimbursement"
+    - party:
+        usage: "LABEL"
+        description: "Party that the deputie is related to"
+    - subquota_description:
+        usage: "LABEL"
+        description: "Subquota"
+    - supplier:
+        usage: "LABEL"
+        description: "Company or person whom provided the receipt"
+    - congressperson_name:
+        usage: "LABEL"
+        description: "Deputie who requested the reimbursement"
+    - total_net_value:
+        usage: "GAUGE"
+        description: "Reimbursement value"
+
