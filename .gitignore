@@ -25,3 +25,7 @@ staticfiles/
 
 # ansible stuff
 contrib/update/update.retry
+
+# celerybeat
+celerybeat-schedule
+celerybeat.pid
