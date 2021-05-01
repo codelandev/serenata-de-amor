@@ -1,4 +1,4 @@
 -r requirements.txt
 django-test-without-migrations==0.6
-ipdb==0.11
-mixer==6.1.3
+ipdb==0.13.7
+mixer==7.1.2

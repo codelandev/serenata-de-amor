@@ -1,10 +1,10 @@
 brutils==1.0.1
 docopt==0.6.2
-freezegun==0.3.11
-geopy==1.18.1
-ipdb==0.11
-numpy==1.16.2
+freezegun==1.1.0
+geopy==2.1.0
+ipdb==0.13.7
+numpy==1.20.2
 # scipy must come before scikit-learn in order to build the wheel in docker image
-scipy==1.2.1
-scikit-learn==0.20.2
+scipy==1.6.3
+scikit-learn==0.24.2
 serenata-toolbox  # pyup: ignore
