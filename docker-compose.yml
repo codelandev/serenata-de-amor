@@ -5,16 +5,10 @@ services:
     image: memcached:1.5.8-alpine
     restart: always
 
-  elm:
-    hostname: elm
-    image: serenata/elm
-    restart: on-failure
-
   django:
     command: ["gunicorn", "jarbas.wsgi:application", "--reload", "--bind", "0.0.0.0:8000", "--workers", $WEB_WORKERS, "--log-level", $LOG_LEVEL, "--timeout", $WEB_TIMEOUT]
     depends_on:
       - cache
-      - elm
       - tasks
     env_file:
       - .env
@@ -22,6 +16,7 @@ services:
       - NEW_RELIC_APP_NAME=Jarbas (Django); Jarbas (Combined)
     hostname: django
     image: serenata/django
+    build: .
     restart: always
 
   queue:

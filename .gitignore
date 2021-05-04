@@ -25,3 +25,4 @@ staticfiles/
 
 # ansible stuff
 contrib/update/update.retry
+rosie/output/

@@ -13,8 +13,7 @@ As our stack is not a simple one we opted for standardizing our instructions do 
 Everything is expected to work with:
 
 ```console
-$ cp contrib/.env.sample .env
-$ docker-compose up
+$ make run-and-populate-sample-data
 ```
 
 **Note:** `docker-compose up` is just a health check to assure all dependencies are succesfully installed and the project is running well. To run properly Jarbas and Rosie there are a few more steps (migrations, for example), which are the ones below.

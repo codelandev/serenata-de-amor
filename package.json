@@ -10,7 +10,6 @@
     "watch": "gulp watch"
   },
   "dependencies": {
-    "elm": "^0.18",
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
     "gulp-elm": "^0.7.2",

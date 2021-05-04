@@ -1,14 +1,6 @@
 version: "3"
 services:
 
-  django:
-    volumes:
-      - assets:/code/staticfiles
-
-  elm:
-    volumes:
-      - assets:/code/jarbas/layers/static
-
   logging:
     command: ["syslog+tls://logs2.papertrailapp.com:54868"]
     image: gliderlabs/logspout
@@ -40,6 +32,3 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /var/run/html:/usr/share/nginx/html
       - /var/run/vhost.d:/etc/nginx/vhost.d
-
-volumes:
-  assets:
